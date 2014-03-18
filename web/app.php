@@ -2,6 +2,6 @@
 
 require_once __DIR__ . '/../src/app.php';
 
-$app->run();
+$app['http_cache']->run();
 
 ?>
