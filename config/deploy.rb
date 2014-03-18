@@ -3,54 +3,55 @@ lock '3.1.0'
 set :application, 'silex-cartodb'
 set :repo_url, 'git@github.com:simbiotica/silex-cartodb.git'
 
-# Default branch is :master
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
+set :branch, 'master'
+ask(:password, 'secret')
 
-# Default deploy_to directory is /var/www/my_app
-# set :deploy_to, '/var/www/my_app'
+set :deploy_to, '/var/www/silex-cartodb'
+set :scm, :git
 
-# Default value for :scm is :git
-# set :scm, :git
+set :format, :pretty
+set :log_level, :debug
+set :pty, true
 
-# Default value for :format is :pretty
-# set :format, :pretty
-
-# Default value for :log_level is :debug
-# set :log_level, :debug
-
-# Default value for :pty is false
-# set :pty, true
-
-# Default value for :linked_files is []
-# set :linked_files, %w{config/database.yml}
-
-# Default value for linked_dirs is []
-# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
-
-# Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
-
-# Default value for keep_releases is 5
-# set :keep_releases, 5
+set :linked_files, %w{web/.htaccess}
+set :keep_releases, 3
 
 namespace :deploy do
+
+  desc 'Installing vendors'
+  task :vendors do
+    on roles(:all), in: :sequence, wait: 5 do
+      execute "cd #{current_path} && bundle install"
+      execute "cd #{current_path} && curl -sS https://getcomposer.org/installer | php"
+      execute "cd #{current_path} && php composer.phar install --no-dev --verbose --prefer-dist --optimize-autoloader"
+      execute "cd #{current_path} && npm install"
+    end
+  end
+
+  desc 'Installing assets'
+  task :assets do
+    on roles(:all), in: :sequence, wait: 5 do
+      execute "cd #{current_path} && bower install"
+      execute "cd #{current_path} && grunt build"
+    end
+  end
 
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      # Your restart mechanism here, for example:
-      # execute :touch, release_path.join('tmp/restart.txt')
+      # Your restart mechanism here
+      execute "service apache2 restart"
     end
   end
 
   after :publishing, :restart
+  before :restart, :vendors
+  after :vendors, :assets
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
+      execute "rm -rf #{current_path}/cache/*"
+      execute "chmod -R 777 #{current_path}/cache"
     end
   end
 

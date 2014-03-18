@@ -24,5 +24,9 @@
   "unused": true,
   "expr": true,
 
-  "predef": []
+  "predef": [
+    "define",
+    "describe",
+    "it"
+  ]
 }

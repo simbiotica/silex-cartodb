@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 $app = new Application();
 $app->register(new TwigServiceProvider(), array(
-    'twig.path' => __DIR__.'/Views',
+    'twig.path' => __DIR__.'/views'
 ));
 $app->register(new UrlGeneratorServiceProvider());
 
