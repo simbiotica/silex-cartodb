@@ -1,0 +1,23 @@
+{% extends 'layout.twig' %}
+
+{% block styles %}
+  <link rel="stylesheet" href="/.tmp/styles/main.css">
+{% endblock %}
+
+{% block main %}
+  <header class="header-layout">
+    <div class="row">
+      <div class="col-lg-12">
+
+      </div>
+    </div>
+  </header>
+  <div class="dashboard-layout"></div>
+  <div class="map-layout">
+    <div class="map-mod" id="mapView"></div>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="/vendor/requirejs/require.js" data-main="/app/scripts/main"></script>
+{% endblock %}

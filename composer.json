@@ -1,5 +1,17 @@
 {
   "require": {
-    "silex/silex": "~1.1"
+    "silex/silex": "~1.1",
+    "twig/twig": ">=1.8,<2.0-dev",
+    "symfony/twig-bridge": "~2.3"
+  },
+  "config": {
+    "github-oauth": {
+      "github.com": "b48605ca78dea21c927bc84e508ea48e72a50528"
+    }
+  },
+  "autoload": {
+    "psr-0": {
+      "Controllers": "src/"
+    }
   }
 }

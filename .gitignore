@@ -1,2 +1,13 @@
 *.lock
+*.log
+.DS_Store
+.sass-cache
+node_modules
+vendor
+cache/*
+web/app/vendor
+web/.tmp
+web/dist
+web/.htaccess
 composer.phar
+!.gitkeep
