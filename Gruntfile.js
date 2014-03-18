@@ -61,7 +61,7 @@ module.exports = function(grunt) {
           httpFontsPath: '/nyc-cityhall.vizzuality.com/fonts'
         }
       },
-      server: {
+      app: {
         options: {
           debugInfo: true,
           relativeAssets: true
@@ -89,7 +89,7 @@ module.exports = function(grunt) {
         'Gruntfile.js',
         '<%= root.app %>/scripts/{,*/}{,*/}*.js',
         '<%= root.test %>/specs/{,*/}{,*/}*.js',
-        '<%= root.test %>/specRunner.js'
+        '<%= root.test %>/runner.js'
       ]
     },
 

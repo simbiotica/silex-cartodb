@@ -1,0 +1,29 @@
+// Grid system
+$grid-max-width: 100%;
+$grid-min-width: 0;
+$grid-columns: 12;
+$grid-gutter-width: 2%;
+
+// Screens
+$lg: 1400px;
+$md: 900px;
+$sm: 320px;
+
+// Typography
+$site-font-family: Helvetica, Arial, sans-serif;
+$site-font-size: 13px;
+$site-line-height: 1.2;
+
+// Colors
+$bluedark: #2C3E50;
+$orange: #E74C3C;
+$graylight: #ECF0F1;
+$bluelight: #3498DB;
+$blue: #2980B9;
+
+// Theme colors
+$primary-color: $bluedark;
+$secondary-color: $orange;
+$thirth-color: $graylight;
+$fourth-color: $bluelight;
+$fifth-color: $blue;

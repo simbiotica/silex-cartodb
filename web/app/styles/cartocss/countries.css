@@ -1,0 +1,27 @@
+#countries{
+  polygon-opacity: 0.8;
+  line-color: #FFF;
+  line-width: 1;
+  line-opacity: 1;
+}
+#countries [ cash_transfers <= 668] {
+  polygon-fill: #B10026;
+}
+#countries [ cash_transfers <= 213] {
+  polygon-fill: #E31A1C;
+}
+#countries [ cash_transfers <= 136] {
+  polygon-fill: #FC4E2A;
+}
+#countries [ cash_transfers <= 100] {
+  polygon-fill: #FD8D3C;
+}
+#countries [ cash_transfers <= 70] {
+  polygon-fill: #FEB24C;
+}
+#countries [ cash_transfers <= 40] {
+  polygon-fill: #FED976;
+}
+#countries [ cash_transfers <= 17] {
+  polygon-fill: #FFFFB2;
+}

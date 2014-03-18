@@ -27,6 +27,8 @@
   "predef": [
     "define",
     "describe",
-    "it"
+    "it",
+    "cartodb",
+    "L"
   ]
 }

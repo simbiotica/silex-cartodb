@@ -1,0 +1,28 @@
+body {
+  font-family: $site-font-family;
+  font-size: $site-font-size;
+  line-height: $site-line-height;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+
+  background: $thirth-color;
+
+  color: $primary-color;
+}
+
+h1 {
+  font-size: $site-font-size + 7;
+}
+
+h2 {
+  font-size: $site-font-size + 4;
+}
+
+h3 {
+  font-size: $site-font-size + 2;
+}
+
+a {
+  color: $secondary-color;
+  text-decoration: none;
+}
