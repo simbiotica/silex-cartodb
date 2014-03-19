@@ -74,6 +74,7 @@ define([
       };
 
       customLegend = new cdb.geo.ui.Legend({
+        title: 'A custom legend',
         type: 'custom',
         data: customLegendData
       });
