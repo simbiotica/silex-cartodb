@@ -1,9 +1,11 @@
 'use strict';
 
 define([
+  'underscore',
   'backbone',
-  'text!../../../styles/cartocss/countries.css'
-], function(Backbone, cartocss) {
+  'text!../../../styles/cartocss/countries.css',
+  'text!../../../templates/infowindow.handlebars'
+], function(_, Backbone, cartocss, tpl) {
 
   var CountriesLayerView = Backbone.View.extend({
 
@@ -12,9 +14,12 @@ define([
       type: 'cartodb',
       sublayers: [{
         sql: 'SELECT * FROM countries',
-        cartocss: cartocss
+        cartocss: cartocss,
+        interactivity: 'cartodb_id, name'
       }]
     },
+
+    template: tpl,
 
     createLayer: function(map) {
       var self = this;
@@ -26,20 +31,30 @@ define([
       }
 
       function successCallback(layer) {
-        var sublayer = layer.getSubLayer(0);
-
-        console.log(sublayer);
+        self.layer = layer;
+        self.map.addLayer(layer);
+        self.createInfowindow();
       }
 
       if (this.map && !this.layer) {
-        this.layer = cartodb.createLayer(this.map, this.options);
-
-        this.layer
-          .addTo(self.map)
+        cartodb.createLayer(this.map, this.options)
           .on('done', successCallback)
           .on('error', errorCallback);
       }
-    }
+    },
+
+    createInfowindow: function() {
+      var self = this;
+
+      _.each(this.options.sublayers, function(option) {
+        self.infowindow = cdb.vis.Vis.addInfowindow(self.map, self.layer.getSubLayer(0), option.interactivity, {
+          infowindowTemplate: self.template,
+          templateType: 'handlebars'
+        });
+      });
+    },
+
+    createLegend: function() {}
 
   });
 

@@ -35,11 +35,19 @@ require.config({
 });
 
 require([
+  'underscore',
+  'handlebars',
+
   'views/map',
   'router'
-], function(MapView, Router) {
+], function(_, Handlebars, MapView, Router) {
 
   sessionStorage.setItem('CARTODBUSER', 'simbiotica');
+
+  // CARTODB Hack
+  cdb.core.Template.compilers = _.extend(cdb.core.Template.compilers, {
+    handlebars: typeof(Handlebars) === 'undefined' ? null : Handlebars.compile
+  });
 
   new MapView();
   new Router();
