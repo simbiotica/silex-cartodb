@@ -33,7 +33,8 @@ define([
       function successCallback(layer) {
         self.layer = layer;
         self.map.addLayer(layer);
-        self.createInfowindow();
+        self.createInfowindows();
+        self.createLegends();
       }
 
       if (this.map && !this.layer) {
@@ -43,7 +44,7 @@ define([
       }
     },
 
-    createInfowindow: function() {
+    createInfowindows: function() {
       var self = this;
 
       _.each(this.options.sublayers, function(option) {
@@ -54,7 +55,37 @@ define([
       });
     },
 
-    createLegend: function() {}
+    createLegends: function() {
+      var customLegendData, choroplethLegendData, customLegend, choroplethLegend;
+
+      customLegendData = [{
+        name: 'Item 1',
+        value: '#ff0'
+      }, {
+        name: 'Item 2',
+        value: '#f00'
+      }];
+
+      choroplethLegendData = {
+        title: 'A choropleth legend',
+        left: '0%',
+        right: '100%',
+        colors: ['#FFFAC0', '#E8C365', '#D08A1B', '#B85D1C', '#983745', '#632969', '#212D6F']
+      };
+
+      customLegend = new cdb.geo.ui.Legend({
+        type: 'custom',
+        data: customLegendData
+      });
+
+      choroplethLegend = new cdb.geo.ui.Legend.Choropleth(choroplethLegendData);
+
+      this.legends = new cdb.geo.ui.Legend.Stacked({
+        legends: [customLegend, choroplethLegend]
+      });
+
+      this.$el.append(this.legends.render().el);
+    }
 
   });
 

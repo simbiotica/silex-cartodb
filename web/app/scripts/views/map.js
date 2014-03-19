@@ -20,7 +20,9 @@ define([
     },
 
     initialize: function() {
-      this.countriesLayer = new CountriesLayerView();
+      this.countriesLayer = new CountriesLayerView({
+        el: this.el
+      });
 
       this.createMap();
       this.createTile();
