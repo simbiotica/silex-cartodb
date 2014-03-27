@@ -5,9 +5,9 @@
 node_modules
 vendor
 cache/*
-web/app/vendor
-web/.tmp
-web/dist
+web/tocapu/app/vendor
+web/tocapu/.tmp
+web/tocapu/dist
 web/.htaccess
 composer.phar
 !.gitkeep
