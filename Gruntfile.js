@@ -8,10 +8,10 @@ module.exports = function(grunt) {
   grunt.initConfig({
 
     root: {
-      app: 'tocapu/web/app',
-      tmp: 'tocapu/web/.tmp',
-      test: 'tocapu/web/test',
-      dist: 'tocapu/web/dist'
+      app: 'web/tocapu/app',
+      tmp: 'web/tocapu/.tmp',
+      test: 'web/tocapu/test',
+      dist: 'web/tocapu/dist'
     },
 
     clean: {
@@ -56,9 +56,9 @@ module.exports = function(grunt) {
       },
       dist: {
         options: {
-          httpImagesPath: '/nyc-cityhall.vizzuality.com/images',
-          httpGeneratedImagesPath: '/nyc-cityhall.vizzuality.com/images/sprite',
-          httpFontsPath: '/nyc-cityhall.vizzuality.com/fonts'
+          httpImagesPath: '/dist/images',
+          httpGeneratedImagesPath: '/dist/images/sprite',
+          httpFontsPath: '/dist/fonts'
         }
       },
       app: {
