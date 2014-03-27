@@ -8,10 +8,10 @@ module.exports = function(grunt) {
   grunt.initConfig({
 
     root: {
-      app: 'web/app',
-      tmp: 'web/.tmp',
-      test: 'web/test',
-      dist: 'web/dist'
+      app: 'tocapu/web/app',
+      tmp: 'tocapu/web/.tmp',
+      test: 'tocapu/web/test',
+      dist: 'tocapu/web/dist'
     },
 
     clean: {
